@@ -1,0 +1,848 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =====================================
+   HOME PAGE
+   ===================================== */
+
+.home-page {
+  min-height: 100vh;
+  margin: 0 -20px;
+  padding: 20px 0 70px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(99, 102, 241, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 35%,
+      rgba(59, 130, 246, 0.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f9ff 0%,
+      #f4f6ff 50%,
+      #ffffff 100%
+    );
+}
+
+
+/* =====================================
+   TOP WELCOME
+   ===================================== */
+
+.top-welcome {
+  text-align: center;
+  padding: 25px 20px 40px;
+}
+
+.top-welcome p {
+  margin: 0 0 9px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 4px;
+
+  color: #6366f1;
+}
+
+.top-welcome h1 {
+  margin: 0;
+
+  font-size: 42px;
+
+  font-weight: 800;
+
+  color: #172033;
+}
+
+.top-welcome span {
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #7c3aed
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* =====================================
+   HERO SECTION
+   ===================================== */
+
+.hero-section {
+  max-width: 1100px;
+  min-height: 390px;
+
+  margin: 0 auto 50px;
+
+  padding: 60px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf3ff 0%,
+      #f1efff 50%,
+      #e8efff 100%
+    );
+
+  border: 1px solid #dfe6ff;
+
+  box-shadow:
+    0 20px 45px rgba(65, 75, 150, 0.08);
+}
+
+
+/* Background decoration */
+
+.hero-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  right: -120px;
+  top: -150px;
+
+  border-radius: 50%;
+
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.hero-section::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  left: -120px;
+  bottom: -120px;
+
+  border-radius: 50%;
+
+  background: rgba(59, 130, 246, 0.07);
+}
+
+
+/* =====================================
+   HERO CONTENT
+   ===================================== */
+
+.hero-content {
+  max-width: 620px;
+
+  position: relative;
+  z-index: 2;
+
+  text-align: left;
+}
+
+.hero-content h2 {
+  margin: 0;
+
+  font-size: 52px;
+
+  line-height: 1.08;
+
+  font-weight: 800;
+
+  letter-spacing: -1.2px;
+
+  color: #172033;
+}
+
+
+/* START SHOPPING */
+
+.hero-label {
+  margin: 22px 0 12px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  color: #6366f1;
+}
+
+
+/* Description */
+
+.hero-description {
+  max-width: 520px;
+
+  margin: 0 0 28px;
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+  color: #68738a;
+}
+
+
+/* =====================================
+   HERO BUTTON
+   ===================================== */
+
+.hero-button {
+  display: inline-block;
+
+  padding: 14px 25px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #172033,
+      #312e81
+    );
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 18px rgba(49, 46, 129, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #7c3aed
+    );
+
+  box-shadow:
+    0 10px 22px rgba(79, 70, 229, 0.25);
+}
+
+
+/* =====================================
+   SHOPPING ILLUSTRATION
+   ===================================== */
+
+.hero-illustration {
+  width: 310px;
+  height: 250px;
+
+  position: relative;
+
+  z-index: 2;
+
+  flex-shrink: 0;
+}
+
+
+/* First shopping bag */
+
+.shopping-bag {
+  position: absolute;
+}
+
+.bag-one {
+  width: 105px;
+  height: 125px;
+
+  right: 145px;
+  bottom: 35px;
+}
+
+.bag-one .bag-shape {
+  position: absolute;
+
+  width: 100px;
+  height: 115px;
+
+  bottom: 0;
+
+  background: #c5cbe0;
+
+  clip-path: polygon(
+    8% 8%,
+    92% 8%,
+    82% 100%,
+    18% 100%
+  );
+}
+
+.bag-one .bag-handle {
+  position: absolute;
+
+  width: 48px;
+  height: 40px;
+
+  left: 27px;
+  top: -15px;
+
+  border: 7px solid #c5cbe0;
+
+  border-bottom: none;
+
+  border-radius: 30px 30px 0 0;
+}
+
+
+/* Second shopping bag */
+
+.bag-two {
+  width: 100px;
+  height: 125px;
+
+  right: 45px;
+  bottom: 25px;
+}
+
+.bag-two .bag-shape {
+  position: absolute;
+
+  width: 100px;
+  height: 110px;
+
+  bottom: 0;
+
+  background: #d0d5e7;
+
+  clip-path: polygon(
+    5% 12%,
+    95% 12%,
+    88% 100%,
+    12% 100%
+  );
+}
+
+.bag-two .bag-handle {
+  position: absolute;
+
+  width: 50px;
+  height: 40px;
+
+  left: 25px;
+  top: -15px;
+
+  border: 7px solid #d0d5e7;
+
+  border-bottom: none;
+
+  border-radius: 30px 30px 0 0;
+}
+
+
+/* Small box */
+
+.small-box {
+  position: absolute;
+
+  width: 55px;
+  height: 55px;
+
+  right: 125px;
+  bottom: 30px;
+
+  background: #b9c0dc;
+
+  transform: rotate(12deg);
+
+  border-radius: 5px;
+}
+
+
+/* =====================================
+   ADMIN DASHBOARD
+   ===================================== */
+
+.admin-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.admin-page h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.admin-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.admin-summary-card {
+  background: #fff;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
+
+  border-left: 5px solid #333;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-summary-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.admin-summary-card h3 {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #666;
+}
+
+.admin-summary-card p {
+  margin: 12px 0 0;
+
+  font-size: 32px;
+
+  font-weight: bold;
+
+  color: #222;
+}
+
+
+/* =====================================
+   ADMIN ORDERS
+   ===================================== */
+
+.admin-orders-container {
+  max-width: 1100px;
+
+  margin: 40px auto;
+
+  padding: 0 20px;
+}
+
+.admin-orders-container h2 {
+  font-size: 30px;
+
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.admin-order-card {
+  background: #fff;
+
+  border-radius: 12px;
+
+  padding: 22px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-order-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.12);
+}
+
+.admin-order-card p {
+  margin: 8px 0;
+
+  color: #444;
+}
+
+.admin-order-card strong {
+  color: #222;
+}
+
+.admin-view-button {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  padding: 9px 16px;
+
+  background: #333;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  font-weight: bold;
+
+  transition: background 0.2s ease;
+}
+
+.admin-view-button:hover {
+  background: #555;
+}
+
+
+/* =====================================
+   ADMIN DETAILS
+   ===================================== */
+
+.admin-details-page {
+  max-width: 900px;
+
+  margin: 40px auto;
+
+  padding: 0 20px;
+}
+
+.admin-details-page h2 {
+  font-size: 30px;
+
+  margin-bottom: 25px;
+
+  color: #222;
+}
+
+.admin-details-card {
+  background: #fff;
+
+  border-radius: 12px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-detail-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.admin-detail-row strong {
+  color: #333;
+}
+
+.admin-items {
+  margin-top: 15px;
+}
+
+.admin-item {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.admin-item-name {
+  font-weight: 500;
+}
+
+.admin-item-price {
+  font-weight: bold;
+}
+
+
+/* =====================================
+   ADMIN STATUS
+   ===================================== */
+
+.admin-status-section {
+  margin-top: 25px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #eee;
+}
+
+.admin-status-select {
+  padding: 9px 12px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  margin-left: 10px;
+}
+
+.admin-update-button {
+  margin-top: 15px;
+
+  padding: 10px 18px;
+
+  background: #333;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: background 0.2s ease;
+}
+
+.admin-update-button:hover {
+  background: #555;
+}
+
+.admin-back-link {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  color: #333;
+
+  text-decoration: none;
+
+  font-weight: bold;
+}
+
+.admin-back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* =====================================
+   ADMIN STATES
+   ===================================== */
+
+.admin-loading {
+  text-align: center;
+
+  margin-top: 60px;
+
+  font-size: 18px;
+
+  color: #555;
+}
+
+.admin-error {
+  text-align: center;
+
+  margin-top: 60px;
+
+  color: #d32f2f;
+
+  font-weight: bold;
+}
+
+.admin-empty {
+  text-align: center;
+
+  margin-top: 60px;
+
+  color: #666;
+
+  font-size: 18px;
+}
+
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+
+@media (max-width: 900px) {
+
+  .hero-section {
+    padding: 50px 40px;
+  }
+
+  .hero-content h2 {
+    font-size: 42px;
+  }
+
+  .hero-illustration {
+    width: 260px;
+
+    transform: scale(0.85);
+  }
+
+  .admin-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 650px) {
+
+  .home-page {
+    margin: 0 -20px;
+
+    padding-top: 10px;
+  }
+
+
+  /* Welcome */
+
+  .top-welcome {
+    padding: 20px 15px 30px;
+  }
+
+  .top-welcome h1 {
+    font-size: 32px;
+  }
+
+
+  /* Hero */
+
+  .hero-section {
+    min-height: auto;
+
+    margin: 0 15px 40px;
+
+    padding: 42px 25px;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    border-radius: 22px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+
+    text-align: center;
+  }
+
+  .hero-content h2 {
+    font-size: 36px;
+
+    letter-spacing: -0.7px;
+  }
+
+  .hero-label {
+    font-size: 11px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-illustration {
+    width: 250px;
+    height: 190px;
+
+    margin-top: 25px;
+
+    transform: scale(0.8);
+  }
+
+
+  /* Admin */
+
+  .admin-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-detail-row,
+  .admin-item {
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .admin-status-select {
+    margin-left: 0;
+
+    margin-top: 10px;
+  }
+}
