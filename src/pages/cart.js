@@ -28,11 +28,6 @@ function Cart() {
       return total + price * quantity;
     }, 0);
   };
-
-  /* =========================
-     PRODUCT IMAGE
-  ========================= */
-
   const getProductImage = (item) => {
     const image =
       item.product?.image ||
@@ -46,9 +41,6 @@ function Cart() {
     return image;
   };
 
-  /* =========================
-     LOADING
-  ========================= */
 
   if (loading) {
     return (
@@ -63,9 +55,6 @@ function Cart() {
     );
   }
 
-  /* =========================
-     ERROR
-  ========================= */
 
   if (error) {
     return (
@@ -81,9 +70,6 @@ function Cart() {
     );
   }
 
-  /* =========================
-     EMPTY CART
-  ========================= */
 
   if (!cartItems || cartItems.length === 0) {
     return (
@@ -117,9 +103,6 @@ function Cart() {
       </h2>
 
 
-      {/* =========================
-          CART ITEMS
-      ========================= */}
 
       <div className="cart-list">
 
@@ -242,16 +225,13 @@ function Cart() {
           margin-bottom: 30px;
 
           font-size: 30px;
-
+hub.com/mounika
           font-weight: 800;
 
           color: #172033;
         }
 
 
-        /* =========================
-           CART LIST
-        ========================= */
 
         .cart-list {
           display: flex;
@@ -262,9 +242,7 @@ function Cart() {
         }
 
 
-        /* =========================
-           EACH PRODUCT BOX
-        ========================= */
+        
 
         .cart-product-box {
           display: flex;

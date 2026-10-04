@@ -13,36 +13,58 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [apiError, setApiError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
+
+    setApiError("");
   };
 
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
 
-    if (!formData.email) {
+    if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address.";
     }
 
-    if (!formData.phone) {
+    if (!formData.phone.trim()) {
       newErrors.phone = "Phone is required";
     } else if (!/^[0-9]{10}$/.test(formData.phone.trim())) {
-      newErrors.phone = "Please enter a valid 10-digit phone number";
+      newErrors.phone =
+        "Please enter a valid 10-digit phone number";
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password should contain at least 6 characters";
+      newErrors.password =
+        "Password should contain at least 6 characters";
     }
 
-    if (formData.confirmPassword !== formData.password) {
-      newErrors.confirmPassword = "Confirm Password must match Password";
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword =
+        "Please confirm your password";
+    } else if (
+      formData.confirmPassword !== formData.password
+    ) {
+      newErrors.confirmPassword =
+        "Confirm Password must match Password";
     }
 
     return newErrors;
@@ -50,7 +72,9 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setApiError("");
+
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length === 0) {
@@ -58,9 +82,11 @@ const Register = () => {
 
       fetch("http://localhost:5000/user/register", {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -70,19 +96,28 @@ const Register = () => {
       })
         .then(async (res) => {
           const data = await res.json();
+
           if (!res.ok) {
-           
             throw new Error(
-              data.message || data.error || "Registration failed on server side."
+              data.message ||
+                data.error ||
+                "Registration failed on server side."
             );
           }
+
           return data;
         })
+
         .then(() => {
           setIsSubmitted(true);
         })
+
         .catch((err) => {
-          setApiError(err.message || "Something went wrong. Please try again.");
+          setApiError(
+            err.message ||
+              "Something went wrong. Please try again."
+          );
+
           setIsSubmitted(false);
         });
     } else {
@@ -92,130 +127,310 @@ const Register = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "40px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-      }}
-    >
-      <h2>Create Account</h2>
+    <div className="register-page">
 
-      {apiError && (
-        <p style={{ color: "red", textAlign: "center", fontSize: "14px" }}>
-          {apiError}
-        </p>
-      )}
+      <div className="register-container">
 
-      {isSubmitted ? (
-        <div style={{ color: "green", margin: "20px 0", textAlign: "center" }}>
-          <h3>Registration successful!</h3>
-          <p>Welcome to MyStore.</p>
+        {/* =========================
+            HEADER
+        ========================== */}
+
+        <div className="register-header">
+
+          <div className="register-brand">
+            🛍️
+          </div>
+
+          <h1>MyStore</h1>
+
+          <h2>Create Your Account ✨</h2>
+
+          <p>
+            Join us and start your shopping journey
+          </p>
+
         </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "15px" }}>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-            />
-            {errors.name && (
-              <span style={{ color: "red", fontSize: "12px" }}>
-                {errors.name}
-              </span>
-            )}
-          </div>
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-            />
-            {errors.email && (
-              <span style={{ color: "red", fontSize: "12px" }}>
-                {errors.email}
-              </span>
-            )}
-          </div>
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>Phone:</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-            />
-            {errors.phone && (
-              <span style={{ color: "red", fontSize: "12px" }}>
-                {errors.phone}
-              </span>
-            )}
-          </div>
+        {/* =========================
+            REGISTRATION CARD
+        ========================== */}
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-            />
-            {errors.password && (
-              <span style={{ color: "red", fontSize: "12px" }}>
-                {errors.password}
-              </span>
-            )}
-          </div>
+        <div className="register-card">
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>Confirm Password:</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-            />
-            {errors.confirmPassword && (
-              <span style={{ color: "red", fontSize: "12px" }}>
-                {errors.confirmPassword}
-              </span>
-            )}
-          </div>
+          {apiError && (
+            <div className="register-api-error">
+              ⚠️ {apiError}
+            </div>
+          )}
 
-          <button
-            type="submit"
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            Create Account
-          </button>
-        </form>
-      )}
+          {isSubmitted ? (
 
-      <p style={{ marginTop: "15px", textAlign: "center" }}>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+            <div className="register-success">
+
+              <div className="register-success-icon">
+                ✓
+              </div>
+
+              <h3>
+                Registration Successful!
+              </h3>
+
+              <p>
+                Welcome to MyStore 🎉
+              </p>
+
+              <Link
+                to="/login"
+                className="success-login-button"
+              >
+                Continue to Login
+              </Link>
+
+            </div>
+
+          ) : (
+
+            <form
+              onSubmit={handleSubmit}
+              className="register-form"
+            >
+
+              {/* NAME */}
+
+              <div className="register-field">
+
+                <label htmlFor="name">
+                  Full Name
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <span className="register-input-icon">
+                    👤
+                  </span>
+
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    autoComplete="name"
+                  />
+
+                </div>
+
+                {errors.name && (
+                  <span className="register-error">
+                    {errors.name}
+                  </span>
+                )}
+
+              </div>
+
+
+              {/* PHONE */}
+
+              <div className="register-field">
+
+                <label htmlFor="phone">
+                  Phone Number
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <span className="register-input-icon">
+                    📱
+                  </span>
+
+                  <input
+                    id="phone"
+                    type="text"
+                    name="phone"
+                    placeholder="Enter 10-digit phone number"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    maxLength="10"
+                    autoComplete="tel"
+                  />
+
+                </div>
+
+                {errors.phone && (
+                  <span className="register-error">
+                    {errors.phone}
+                  </span>
+                )}
+
+              </div>
+
+
+              {/* EMAIL */}
+
+              <div className="register-field">
+
+                <label htmlFor="email">
+                  Email Address
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <span className="register-input-icon">
+                    ✉️
+                  </span>
+
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                  />
+
+                </div>
+
+                {errors.email && (
+                  <span className="register-error">
+                    {errors.email}
+                  </span>
+                )}
+
+              </div>
+
+
+              {/* PASSWORD */}
+
+              <div className="register-field">
+
+                <label htmlFor="password">
+                  Password
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <span className="register-input-icon">
+                    🔒
+                  </span>
+
+                  <input
+                    id="password"
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
+                    name="password"
+                    placeholder="Create a password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                  />
+
+                  <button
+                    type="button"
+                    className="register-password-toggle"
+                    onClick={() =>
+                      setShowPassword(!showPassword)
+                    }
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </button>
+
+                </div>
+
+                {errors.password && (
+                  <span className="register-error">
+                    {errors.password}
+                  </span>
+                )}
+
+              </div>
+
+
+              {/* CONFIRM PASSWORD */}
+
+              <div className="register-field">
+
+                <label htmlFor="confirmPassword">
+                  Confirm Password
+                </label>
+
+                <div className="register-input-wrapper">
+
+                  <span className="register-input-icon">
+                    🔐
+                  </span>
+
+                  <input
+                    id="confirmPassword"
+                    type={
+                      showConfirmPassword
+                        ? "text"
+                        : "password"
+                    }
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                  />
+
+                  <button
+                    type="button"
+                    className="register-password-toggle"
+                    onClick={() =>
+                      setShowConfirmPassword(
+                        !showConfirmPassword
+                      )
+                    }
+                  >
+                    {showConfirmPassword
+                      ? "🙈"
+                      : "👁️"}
+                  </button>
+
+                </div>
+
+                {errors.confirmPassword && (
+                  <span className="register-error">
+                    {errors.confirmPassword}
+                  </span>
+                )}
+
+              </div>
+
+
+              {/* BUTTON */}
+
+              <button
+                type="submit"
+                className="register-button"
+              >
+                Create Account
+              </button>
+
+            </form>
+          )}
+
+          {/* LOGIN LINK */}
+
+          {!isSubmitted && (
+            <p className="register-login-text">
+              Already have an account?
+              <Link to="/login">
+                Login
+              </Link>
+            </p>
+          )}
+
+        </div>
+
+      </div>
+
     </div>
   );
 };
